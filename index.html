@@ -1,40 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Pro App</title>
+    <title>Islamic Pro - Offline Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
+
+    <div class="mobile-frame">
         <header>
-            <h1>Al-Quran & Qibla</h1>
+            <div class="status-bar">12:00</div>
+            <div class="app-bar">
+                <h2>Al-Muneer</h2>
+                <div class="icon-circle">👤</div>
+            </div>
         </header>
 
-        <section id="quran-section">
-            <div class="card">
-                <h3>Ayat of the Day</h3>
-                <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-                <p class="translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+        <main id="content">
+            <div class="card quran-card">
+                <span class="tag">Ayat of the Day</span>
+                <p class="arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+                <p class="translation">Beshak mushkil ke saath asaani hai.</p>
+                <button class="btn-main">Quran Parhen</button>
             </div>
-        </section>
 
-        <section id="qibla-section">
-            <div class="compass-card">
+            <div class="card compass-container">
                 <h3>Qibla Direction</h3>
-                <div class="compass">
-                    <div class="arrow" id="compass-arrow"></div>
+                <div class="compass" id="compassBody">
+                    <div class="needle"></div>
+                    <div class="kaaba-icon">🕋</div>
                 </div>
-                <p id="status">Point your phone towards the Kaaba</p>
+                <p class="degree-text">295° North-West</p>
             </div>
-        </section>
 
-        <nav class="bottom-nav">
-            <button onclick="showSection('quran')">Quran</button>
-            <button onclick="showSection('qibla')">Qibla</button>
+            <div class="prayer-times">
+                <div class="time-box active"><span>Fajr</span><span>05:20</span></div>
+                <div class="time-box"><span>Dhuhr</span><span>12:30</span></div>
+                <div class="time-box"><span>Asr</span><span>04:15</span></div>
+                <div class="time-box"><span>Maghrib</span><span>06:10</span></div>
+                <div class="time-box"><span>Isha</span><span>07:45</span></div>
+            </div>
+        </main>
+
+        <nav class="nav-bar">
+            <div class="nav-item active">🏠<br>Home</div>
+            <div class="nav-item">📖<br>Quran</div>
+            <div class="nav-item">🧭<br>Qibla</div>
+            <div class="nav-item">⚙️<br>Settings</div>
         </nav>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
