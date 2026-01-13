@@ -1,42 +1,37 @@
-// Qibla Angle (For Pakistan/Karachi approx 258° - 260° from North)
-const QIBLA_DEGREE = 258; 
+let quranData = [];
 
-function initCompass() {
-    if (window.DeviceOrientationEvent) {
-        // iOS devices ke liye permission mangna zaroori hai
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            DeviceOrientationEvent.requestPermission()
-                .then(response => {
-                    if (response == 'granted') {
-                        window.addEventListener('deviceorientation', handler, true);
-                    }
-                })
-                .catch(console.error);
-        } else {
-            window.addEventListener('deviceorientation', handler, true);
-        }
-    }
+// Data load karne ka function
+async function fetchQuran() {
+    try {
+        const res = await fetch('quran.json');
+        quranData = await res.json();
+    } catch (e) { console.error("Data load nahi ho saka"); }
 }
 
-function handler(e) {
-    let compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-    let compassBody = document.getElementById('compassBody');
+// Quran Section dikhane ka function
+function openQuran() {
+    let content = document.getElementById('content');
+    let html = '<div class="card"><h3>Surah List</h3><ul class="surah-list">';
     
-    // Qibla direction ki calculation
-    // Hum needle ko ghumayenge taake wo Kaaba ki taraf rahe
-    let qiblaDirection = QIBLA_DEGREE - compass;
-    compassBody.style.transform = `rotate(${-compass}deg)`;
+    quranData.forEach((surah, index) => {
+        html += `<li onclick="showSurah(${index})">${surah.id}. ${surah.name}</li>`;
+    });
     
-    // Status update
-    document.querySelector('.degree-text').innerText = `${Math.round(compass)}° ${getDirection(compass)}`;
+    html += '</ul><button onclick="location.reload()" class="btn-main">Back</button></div>';
+    content.innerHTML = html;
 }
 
-function getDirection(deg) {
-    if (deg >= 337.5 || deg < 22.5) return 'North';
-    if (deg >= 247.5 && deg < 292.5) return 'West';
-    // ... baki directions bhi add kar sakte hain
-    return '';
+function showSurah(index) {
+    let surah = quranData[index];
+    let html = `<div class="card"><h3>${surah.name}</h3>`;
+    
+    surah.verses.forEach(v => {
+        html += `<p class="arabic">${v.ar}</p><p class="translation">${v.en}</p><hr>`;
+    });
+    
+    html += '<button onclick="openQuran()" class="btn-main">Back to List</button></div>';
+    document.getElementById('content').innerHTML = html;
 }
 
-// User jab screen par click kare tab compass start ho (Browser policy)
-document.body.addEventListener('click', initCompass, {once: true});
+// Page load par data fetch karein
+window.onload = fetchQuran;
