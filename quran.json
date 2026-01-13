@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "surah": "Al-Fatiha",
+        "ayat": [
+            {"no": 1, "arabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "urdu": "Allah ke naam se shuru jo nihayat meharban reham wala hai."},
+            {"no": 2, "arabic": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", "urdu": "Sab tareefen Allah ke liye hain jo tamam jahanon ka rab hai."}
+        ]
+    },
+    {
+        "id": 2,
+        "surah": "Al-Ikhlas",
+        "ayat": [
+            {"no": 1, "arabic": "قُلْ هُوَ اللَّهُ أَحَدٌ", "urdu": "Aap keh dijiye ke wo Allah ek hai."}
+        ]
+    }
+]
