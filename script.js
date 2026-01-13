@@ -1,13 +1,11 @@
-function showSection(section) {
-    // Abhi ke liye simple alert, baad mein navigation logic add karenge
-    console.log("Switching to: " + section);
-}
-
-// Qibla Compass Logic (Simulation for Browser)
+// Qibla Rotation Simulation
 window.addEventListener('deviceorientation', function(event) {
-    if (event.alpha !== null) {
-        // 'alpha' is the compass heading in degrees
-        let compass = document.getElementById('compass-arrow');
-        compass.style.transform = `translateX(-50%) rotate(${event.alpha}deg)`;
+    let alpha = event.alpha; // Z-axis rotation
+    if (alpha !== null) {
+        let compass = document.getElementById('compassBody');
+        // Qibla angle usually around 295 for Pakistan
+        compass.style.transform = `rotate(${-alpha}deg)`;
     }
 });
+
+console.log("Islamic Pro App Loaded Successfully!");
