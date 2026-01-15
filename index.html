@@ -1,60 +1,257 @@
 <!DOCTYPE html>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <html lang="ur">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Pro - Offline Suite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Al-Muneer | Professional Islamic App</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #004d40;
+            --accent: #ffb300;
+            --bg: #f0f4f3;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Mobile Container Fix */
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--bg);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        /* Header with Real-Time Clock */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px 35px;
+            border-radius: 0 0 30px 30px;
+            text-align: center;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        /* Card Designs */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            padding-bottom: 80px;
+        }
+
+        .card {
+            background: var(--white);
+            margin-top: -20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 26px;
+            color: var(--primary);
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* Professional Compass */
+        .compass-section {
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .compass-ring {
+            width: 180px;
+            height: 180px;
+            border: 4px solid #ddd;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            background: radial-gradient(circle, #fff 50%, #f9f9f9 100%);
+            transition: transform 0.1s linear;
+        }
+
+        .needle {
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff0000 50%, #000 50%);
+            position: absolute;
+            top: 10px;
+            left: calc(50% - 2px);
+            border-radius: 2px;
+        }
+
+        .kaaba-marker {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+
+        /* Prayer Times Row */
+        .prayer-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .prayer-box {
+            background: white;
+            padding: 10px 2px;
+            border-radius: 12px;
+            font-size: 11px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .active-prayer {
+            background: var(--primary) !important;
+            color: white !important;
+            border-color: var(--primary);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-item { color: #888; text-align: center; cursor: pointer; font-size: 12px; }
+        .nav-item.active { color: var(--primary); font-weight: bold; }
+        .nav-item i { font-size: 20px; margin-bottom: 4px; }
+
+        .btn-gold {
+            background: var(--accent);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255,179,0,0.3);
+        }
+    </style>
 </head>
 <body>
 
-    <div class="mobile-frame">
-        <header>
-            <div class="status-bar">12:00</div>
-            <div class="app-bar">
-                <h2>Al-Muneer</h2>
-                <div class="icon-circle">👤</div>
-            </div>
-        </header>
+<div class="app-container">
+    <header>
+        <div class="status-bar">
+            <span id="live-clock">12:00</span>
+            <span><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span>
+        </div>
+        <h2 style="margin:0; font-weight:700;">Al-Muneer</h2>
+    </header>
 
-        <main id="content">
-            <div class="card quran-card">
-                <span class="tag">Ayat of the Day</span>
-                <p class="arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
-                <p class="translation">Beshak mushkil ke saath asaani hai.</p>
-                <button class="btn-main">Quran Parhen</button>
-            </div>
+    <div class="content">
+        <div class="card">
+            <small style="color:#888;">Daily Ayat</small>
+            <p class="arabic-text">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+            <p style="font-size: 14px; color: #555;">"Beshak mushkil ke saath asaani hai."</p>
+            <button class="btn-gold" onclick="alert('Quran loading...')">Quran Parhen</button>
+        </div>
 
-            <div class="card compass-container">
-                <h3>Qibla Direction</h3>
-                <div class="compass" id="compassBody">
-                    <div class="needle"></div>
-                    <div class="kaaba-icon">🕋</div>
-                </div>
-                <p class="degree-text">295° North-West</p>
+        <div class="card compass-section">
+            <h4 style="margin:0 0 15px 0;">Qibla Finder</h4>
+            <div class="compass-ring" id="compassRing">
+                <div class="kaaba-marker">🕋</div>
+                <div class="needle"></div>
             </div>
+            <p id="direction-text" style="margin-top:15px; font-weight:bold; color:var(--primary);">Compass Calibrating...</p>
+            <small style="color:red">Note: Sirf Mobile Sensors par kaam karega</small>
+        </div>
 
-            <div class="prayer-times">
-                <div class="time-box active"><span>Fajr</span><span>05:20</span></div>
-                <div class="time-box"><span>Dhuhr</span><span>12:30</span></div>
-                <div class="time-box"><span>Asr</span><span>04:15</span></div>
-                <div class="time-box"><span>Maghrib</span><span>06:10</span></div>
-                <div class="time-box"><span>Isha</span><span>07:45</span></div>
-            </div>
-        </main>
-
-        <nav class="nav-bar">
-            <div class="nav-item active">🏠<br>Home</div>
-            <div class="nav-item">📖<br>Quran</div>
-            <div class="nav-item">🧭<br>Qibla</div>
-            <div class="nav-item">⚙️<br>Settings</div>
-        </nav>
+        <div class="prayer-row">
+            <div class="prayer-box active-prayer">Fajr<br><b>05:20</b></div>
+            <div class="prayer-box">Dhuhr<br><b>12:30</b></div>
+            <div class="prayer-box">Asr<br><b>04:15</b></div>
+            <div class="prayer-box">Maghrib<br><b>06:10</b></div>
+            <div class="prayer-box">Isha<br><b>07:45</b></div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <nav>
+        <div class="nav-item active"><i class="fas fa-home"></i><br>Home</div>
+        <div class="nav-item"><i class="fas fa-book-open"></i><br>Quran</div>
+        <div class="nav-item"><i class="fas fa-compass"></i><br>Qibla</div>
+        <div class="nav-item"><i class="fas fa-cog"></i><br>Settings</div>
+    </nav>
+</div>
+
+<script>
+    // 1. Real-Time Clock
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('live-clock').innerText = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // 2. Compass Logic
+    function initCompass() {
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientationabsolute', function(event) {
+                let alpha = event.alpha; // North direction
+                if(alpha !== null) {
+                    let compassRing = document.getElementById('compassRing');
+                    // Compass rotate based on hardware sensor
+                    compassRing.style.transform = `rotate(${-alpha}deg)`;
+                    document.getElementById('direction-text').innerText = "Compass Active: " + Math.round(alpha) + "°";
+                }
+            }, true);
+        } else {
+            document.getElementById('direction-text').innerText = "Sensor not supported";
+        }
+    }
+
+    // Permission for iOS/Chrome
+    document.body.addEventListener('click', function() {
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission().then(initCompass);
+        } else {
+            initCompass();
+        }
+    }, {once: true});
+</script>
+
 </body>
 </html>
