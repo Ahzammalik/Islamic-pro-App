@@ -59,3 +59,51 @@ function renderSurahList(data) {
     html += '</ul></div>';
     document.getElementById('content').innerHTML = html;
 }
+
+// 1. Real-time Digital Clock
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.querySelector('.status-bar').innerText = timeString;
+}
+setInterval(updateClock, 1000);
+
+// 2. Accurate Compass & Qibla
+const QIBLA_KABBA_LAT = 21.4225;
+const QIBLA_KABBA_LNG = 39.8262;
+
+function getQiblaDirection() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            const qiblaAngle = calculateQibla(latitude, longitude);
+            startCompass(qiblaAngle);
+        });
+    }
+}
+
+function calculateQibla(lat, lng) {
+    const phiK = QIBLA_KABBA_LAT * Math.PI / 180;
+    const lambdaK = QIBLA_KABBA_LNG * Math.PI / 180;
+    const phi = lat * Math.PI / 180;
+    const lambda = lng * Math.PI / 180;
+    
+    const y = Math.sin(lambdaK - lambda);
+    const x = Math.cos(phi) * Math.tan(phiK) - Math.sin(phi) * Math.cos(lambdaK - lambda);
+    let qibla = Math.atan2(y, x) * 180 / Math.PI;
+    return (qibla + 360) % 360;
+}
+
+function startCompass(targetAngle) {
+    window.addEventListener('deviceorientationabsolute', (e) => {
+        let heading = e.alpha; // North se angle
+        if (heading !== null) {
+            // Compass ko North ki taraf rotate karein
+            const compass = document.getElementById('compassBody');
+            compass.style.transform = `rotate(${-heading}deg)`;
+            
+            // Qibla needle logic (Agar aap alag needle use kar rahe hain)
+            document.querySelector('.degree-text').innerText = `Qibla: ${Math.round(targetAngle)}° | Heading: ${Math.round(heading)}°`;
+        }
+    }, true);
+}
