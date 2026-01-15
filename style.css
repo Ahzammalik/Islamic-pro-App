@@ -166,3 +166,20 @@ header {
 .surah-list li:hover {
     background: #f0f4f0;
 }
+.surah-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.surah-list li {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.surah-list li:hover {
+    background: #f0f4f0;
+}
