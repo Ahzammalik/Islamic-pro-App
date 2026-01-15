@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Al-Muneer Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,18 +14,18 @@
     <header>
         <div class="status-bar">
             <span id="live-clock">00:00</span>
-            <span><i class="fas fa-signal"></i> <i class="fas fa-battery-three-quarters"></i></span>
+            <span><i class="fas fa-signal"></i> <i class="fas fa-battery-full"></i></span>
         </div>
         <h2 class="app-title">Al-Muneer</h2>
     </header>
 
     <main class="content">
-        <section id="home-section" class="tab-content active">
+        <div id="home-tab" class="tab-content active">
             <div class="card main-card">
                 <span class="badge">Ayat of the Day</span>
                 <p class="arabic-text">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
                 <p class="translation">"Beshak mushkil ke saath asaani hai."</p>
-                <button class="btn-primary" onclick="switchTab('quran')">Quran Parhen</button>
+                <button class="btn-gold" onclick="openTab('quran')">Quran Parhen</button>
             </div>
             
             <div class="prayer-grid">
@@ -35,56 +35,36 @@
                 <div class="p-box">Maghrib<br>06:10</div>
                 <div class="p-box">Isha<br>07:45</div>
             </div>
-        </section>
+        </div>
 
-        <section id="quran-section" class="tab-content">
-            <div class="card">
-                <h3>Al-Quran-ul-Kareem</h3>
-                <div id="surah-list-container">
-                    <p>Loading Surahs...</p>
-                </div>
+        <div id="quran-tab" class="tab-content">
+            <div id="quran-view">
+                <h3 style="text-align:center; margin-bottom:15px;">50 Surahs List</h3>
+                <div id="surah-list"></div>
             </div>
-        </section>
+        </div>
 
-        <section id="qibla-section" class="tab-content">
+        <div id="qibla-tab" class="tab-content">
             <div class="card compass-card">
-                <h3>Qibla Direction</h3>
+                <h3>Qibla Finder</h3>
                 <div class="compass-wrapper">
                     <div class="compass-disk" id="compassDisk">
-                        <div class="kaaba-pointer">🕋</div>
-                        <div class="north-pointer">N</div>
+                        <div class="kaaba-icon">🕋</div>
                     </div>
                 </div>
-                <p id="qibla-status">Tap screen to calibrate</p>
+                <p id="qibla-status" style="margin-top:20px; color:#004d40; font-weight:bold;">Tap to activate</p>
+                <small>Mobile sensors required</small>
             </div>
-        </section>
-
-        <section id="settings-section" class="tab-content">
-            <div class="card">
-                <h3>Settings</h3>
-                <p>App Version 1.0.0</p>
-                <p>Offline Mode: Enabled</p>
-            </div>
-        </section>
+        </div>
     </main>
 
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('home', this)">
-            <i class="fas fa-home"></i><span>Home</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('quran', this)">
-            <i class="fas fa-book-quran"></i><span>Quran</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('qibla', this)">
-            <i class="fas fa-compass"></i><span>Qibla</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('settings', this)">
-            <i class="fas fa-cog"></i><span>Settings</span>
-        </div>
+        <div class="nav-item active" onclick="openTab('home')"><i class="fas fa-home"></i><span>Home</span></div>
+        <div class="nav-item" onclick="openTab('quran')"><i class="fas fa-book-open"></i><span>Quran</span></div>
+        <div class="nav-item" onclick="openTab('qibla')"><i class="fas fa-compass"></i><span>Qibla</span></div>
     </nav>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-<script src="surahs.js"></script>
