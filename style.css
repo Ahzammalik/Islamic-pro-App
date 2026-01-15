@@ -1,213 +1,56 @@
+/* Purane style.css ko isse update karein */
 :root {
-    --primary: #00695c;
-    --accent: #ffb300;
-    --bg: #f4f7f6;
-    --white: #ffffff;
+    --primary-dark: #004d40;
+    --accent-gold: #ffb300;
+    --soft-white: #f8fbf9;
 }
 
 body {
-    background-color: #222;
-    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #004d40 0%, #00251a 100%); /* Premium Gradient */
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-}
-
-/* Responsive Layout */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
 }
 
 .mobile-frame {
     width: 100%;
-    max-width: 450px; /* Laptop par mobile jaisa dikhega */
-    min-height: 100vh;
-    background: var(--bg);
+    max-width: 414px;
+    height: 100vh;
+    background: var(--soft-white);
+    border-radius: 0; /* Web par full screen lagega */
+    overflow-y: auto;
     position: relative;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-    overflow-y: auto; /* Scrollable content */
-    padding-bottom: 80px; /* Nav bar ki jagah */
-}
-}
-
-header {
-    background: var(--primary);
-    color: white;
-    padding: 10px 20px 40px;
-    border-radius: 0 0 30px 30px;
-}
-
-.app-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .card {
-    background: var(--white);
-    margin: -20px 20px 20px;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-.quran-card {
-    text-align: center;
-}
-
-.arabic {
-    font-family: 'Amiri', serif;
-    font-size: 28px;
-    color: var(--primary);
-    margin: 15px 0;
-}
-
-.compass-container {
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.compass {
-    width: 150px;
-    height: 150px;
-    border: 8px solid #ddd;
-    border-radius: 50%;
-    margin: 20px auto;
-    position: relative;
     background: white;
-    transition: transform 0.3s ease;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.needle {
-    width: 4px;
-    height: 70px;
-    background: red;
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-.kaaba-icon {
-    position: absolute;
-    top: -25px;
-    left: 42%;
-    font-size: 24px;
-}
-
+/* Prayer Times styling */
 .prayer-times {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
-    padding: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    gap: 8px;
 }
 
 .time-box {
-    background: white;
+    background: #e0f2f1;
     padding: 10px 5px;
-    border-radius: 10px;
+    border-radius: 12px;
+    flex: 1;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 700;
 }
 
 .time-box.active {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
-}
-
-.nav-bar {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 70px;
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #eee;
-}
-
-.btn-main {
-    background: var(--accent);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: #333;
-}
-.surah-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-.surah-list li {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--primary);
-}
-
-.surah-list li:hover {
-    background: #f0f4f0;
-}
-.surah-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-.surah-list li {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--primary);
-}
-
-.surah-list li:hover {
-    background: #f0f4f0;
-}
-.search-input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    outline: none;
-    font-size: 16px;
-}
-
-.search-input:focus {
-    border-color: var(--primary);
-}
-
-.surah-num {
-    background: var(--primary);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 50%;
-    font-size: 12px;
-    margin-right: 10px;
-}
-
-.arabic-name {
-    float: right;
-    color: #888;
-    font-size: 14px;
 }
