@@ -183,3 +183,31 @@ header {
 .surah-list li:hover {
     background: #f0f4f0;
 }
+.search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+}
+
+.surah-num {
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.arabic-name {
+    float: right;
+    color: #888;
+    font-size: 14px;
+}
